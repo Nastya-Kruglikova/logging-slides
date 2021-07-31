@@ -86,7 +86,7 @@ Usage:
         DoStuff(ctx)
     }
 
-Passing loggers inside context.Context would be the worst solution to the problem of decoupling loggers from implementations. Weʼd have gone from an explicit compile time dependency to an implicit run time dependency, one that could not be enforced by the compiler.
+.caption Passing loggers inside context.Context would be the worst solution to the problem of decoupling loggers from implementations. Weʼd have gone from an explicit compile time dependency to an implicit run time dependency, one that could not be enforced by the compiler.
 
 [[https://dave.cheney.net/2017/01/26/context-is-for-cancelation][Why Golang's context should not be used for storing loggers]] Dave Cheney
 
