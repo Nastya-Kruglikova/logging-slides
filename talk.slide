@@ -90,6 +90,33 @@ Usage:
 
 [[https://dave.cheney.net/2017/01/26/context-is-for-cancelation][Why Golang's context should not be used for storing loggers]] Dave Cheney
 
+
+* Logger injected as a dependency
+
+    type Stuff struct {
+        logger Logger
+    }
+
+    func NewStuff(logger Logger) *Stuff {
+        return &Stuff{logger: logger}
+    }
+
+    func (s *Stuff) DoStuff() {
+        s.logger.Debug("Hello playground")
+        s.logger.Debugf("Hello with %s", "formatting")
+    }
+
+    func main() {
+        s := NewStuff(NewBuiltinLogger())
+        s.DoStuff()
+    }
+
+* Pros
+
+- Dependencies should be explicit
+- It can be easily replaced with another implementation
+- The only one which allows to injection of a mock for testing purposes
+
 * Existing libraries
 - [[https://github.com/sirupsen/logrus][sirupsen/logrus]] - Structured, pluggable logging for Go.
 - [[https://github.com/uber-go/zap][uber-go/zap]] - Blazing fast, structured, leveled logging in Go.
