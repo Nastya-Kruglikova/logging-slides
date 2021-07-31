@@ -1,14 +1,11 @@
-Logging approaches: pros and cons
+Logging approaches: pros and cons (Open discussion)
 
 
 Anastasiia Skliar
 
+and community 
 
-* Introduction
-
-Today we want to have live discussion with experts and all the attendants about approaches to implement logging
-
-
+* 
 .image images/programming-without-logs.jpeg
 
 
@@ -22,25 +19,25 @@ Today we want to have live discussion with experts and all the attendants about 
 
 
 * Some common sence rules
-- KNOW YOUR AUDIENCES (people or machines)
-- HAVE A CONSISTENT STRUCTURE ACROSS ALL LOGS
-- USE LOG SEVERITY LEVELS
-- ALWAYS PROVIDE CONTEXT
-- LOG A LOT AND THEN LOG SOME MORE
+- Know your audiences (people or machines)
+- Have a consistent structure across all logs
+- Use log severity levels
+- Always provide context
+- Log a lot and then log some more
 
 
 * Approaches
- - Global State Logging
- - Introducing Logger interface
- - Passing in context.Context
- - Logger injected as a dependency
+- Global State Logging
+- Introducing Logger interface
+- Passing in context.Context
+- Logger injected as a dependency
 
 
- * Global State Logging
- .play code/global.go
+* Global State Logging
+.play code/global.go
 
 
- * Introducing Logger interface
+* Introducing Logger interface
 
 To address concerns with global logger, in all other approaches we'll be using a Logger interface:
 
@@ -49,6 +46,7 @@ To address concerns with global logger, in all other approaches we'll be using a
         Debugf(format string, args ...interface{})
     }
 
+*
 Sample implementation using built-in Go's logger:
 
     type BuiltinLogger struct {
@@ -67,6 +65,7 @@ Sample implementation using built-in Go's logger:
         l.logger.Printf(format, args...)
     }
     
+*    
 Usage:
 
     var logger Logger = NewBuiltinLogger()
@@ -89,10 +88,11 @@ Usage:
 
 Passing loggers inside context.Context would be the worst solution to the problem of decoupling loggers from implementations. Weʼd have gone from an explicit compile time dependency to an implicit run time dependency, one that could not be enforced by the compiler.
 
+[[https://dave.cheney.net/2017/01/26/context-is-for-cancelation][Why Golang's context should not be used for storing loggers]] Dave Cheney
 
 * Existing libraries
 - [[https://github.com/sirupsen/logrus][sirupsen/logrus]] - Structured, pluggable logging for Go.
-- [https://github.com/uber-go/zap][uber-go/zap] - Blazing fast, structured, leveled logging in Go.
+- [[https://github.com/uber-go/zap][uber-go/zap]] - Blazing fast, structured, leveled logging in Go.
 - [[https://github.com/golang/glog][golang/glog]] - Leveled execution logs for Go
 - [[https://github.com/natefinch/lumberjack][natefinch/lumberjack]] - lumberjack is a log rolling package for Go
 - [[https://github.com/op/go-logging][op/go-logging]] - Golang logging library
@@ -109,6 +109,6 @@ Passing loggers inside context.Context would be the worst solution to the proble
 - Threats (suspicious activities, unauthorized access, invalid parameters or input, failed authentication, failed security verification)
 - Events (search queries, product views, likes and favorites, shares, make or cancel an order, viewed a page, how much time a person spent looking at an image, and whether they scrolled to the bottom of a long page, etc.)
 
-
+*
 .image images/yes-discussion-time.jpeg
 
