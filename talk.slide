@@ -10,12 +10,20 @@ Today we want to have live discussion with experts and all the attendants about 
 
 * Items to discuss
 
+- Some common sence rules
 - Approaches
 - Existing libraries
 - What should be in logs
 - How to have useful errors in logs
 - Testing challenge
-- How to mute logs
+
+
+* Some common sence rules
+- KNOW YOUR AUDIENCES (people or machines)
+- HAVE A CONSISTENT STRUCTURE ACROSS ALL LOGS
+- USE LOG SEVERITY LEVELS
+- ALWAYS PROVIDE CONTEXT
+- LOG A LOT AND THEN LOG SOME MORE
 
 
 * Approaches
@@ -25,6 +33,7 @@ Today we want to have live discussion with experts and all the attendants about 
  - Passing in context.Context
  - Logger injected as a dependency
 
+
 * Existing libraries
 - [[https://github.com/sirupsen/logrus][sirupsen/logrus]] - Structured, pluggable logging for Go.
 - [https://github.com/uber-go/zap][uber-go/zap] - Blazing fast, structured, leveled logging in Go.
@@ -32,10 +41,17 @@ Today we want to have live discussion with experts and all the attendants about 
 - [[https://github.com/natefinch/lumberjack][natefinch/lumberjack]] - lumberjack is a log rolling package for Go
 - [[https://github.com/op/go-logging][op/go-logging]] - Golang logging library
 - [[https://github.com/cihub/seelog][cihub/seelog]] - Seelog is a native Go logging library that provides flexible asynchronous dispatching, filtering, and formatting.
-- [inconshreveable/log15](https://github.com/inconshreveable/log15) - Structured, composable logging for Go
-- [apex/log](https://github.com/apex/log) - Structured logging package for Go.
+- [[https://github.com/inconshreveable/log15][inconshreveable/log15]] - Structured, composable logging for Go
+- [[https://github.com/apex/log][apex/log]] - Structured logging package for Go.
+
 
 * What should be in logs
+
+- Requests (service or API access, system and process start up, application access, authentication and authorization)
+- Audit Trail (identity of the user or system that changed the data, the date and time, what data was changed)
+- Availability (faults and exceptions, exceeded capacity limit or resource usage, system errors or bugs, connectivity issues, and slow response times)
+- Threats (suspicious activities, unauthorized access, invalid parameters or input, failed authentication, failed security verification)
+- Events (search queries, product views, likes and favorites, shares, make or cancel an order, viewed a page, how much time a person spent looking at an image, and whether they scrolled to the bottom of a long page, etc.)
 
 
 * How to have useful errors in logs
@@ -43,6 +59,4 @@ Today we want to have live discussion with experts and all the attendants about 
 
 * Testing challenge
 
-
-* How to mute logs
 
