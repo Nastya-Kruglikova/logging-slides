@@ -1,0 +1,48 @@
+Logging approaches: pros and cons
+
+
+Anastasiia Skliar
+
+
+* Introduction
+
+Today we want to have live discussion with experts and all the attendants about approaches to implement logging
+
+* Items to discuss
+
+- Approaches
+- Existing libraries
+- What should be in logs
+- How to have useful errors in logs
+- Testing challenge
+- How to mute logs
+
+
+* Approaches
+ - Global State Logging
+ - Introducing Logger interface
+ - Global Logger - Wrapped In a Struct, Used as an Interface
+ - Passing in context.Context
+ - Logger injected as a dependency
+
+* Existing libraries
+- [[https://github.com/sirupsen/logrus][sirupsen/logrus]] - Structured, pluggable logging for Go.
+- [https://github.com/uber-go/zap][uber-go/zap] - Blazing fast, structured, leveled logging in Go.
+- [[https://github.com/golang/glog][golang/glog]] - Leveled execution logs for Go
+- [[https://github.com/natefinch/lumberjack][natefinch/lumberjack]] - lumberjack is a log rolling package for Go
+- [[https://github.com/op/go-logging][op/go-logging]] - Golang logging library
+- [[https://github.com/cihub/seelog][cihub/seelog]] - Seelog is a native Go logging library that provides flexible asynchronous dispatching, filtering, and formatting.
+- [inconshreveable/log15](https://github.com/inconshreveable/log15) - Structured, composable logging for Go
+- [apex/log](https://github.com/apex/log) - Structured logging package for Go.
+
+* What should be in logs
+
+
+* How to have useful errors in logs
+
+
+* Testing challenge
+
+
+* How to mute logs
+
