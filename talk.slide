@@ -14,8 +14,7 @@ Today we want to have live discussion with experts and all the attendants about 
 - Approaches
 - Existing libraries
 - What should be in logs
-- How to have useful errors in logs
-- Testing challenge
+- Discussion
 
 
 * Some common sence rules
@@ -53,10 +52,5 @@ Today we want to have live discussion with experts and all the attendants about 
 - Threats (suspicious activities, unauthorized access, invalid parameters or input, failed authentication, failed security verification)
 - Events (search queries, product views, likes and favorites, shares, make or cancel an order, viewed a page, how much time a person spent looking at an image, and whether they scrolled to the bottom of a long page, etc.)
 
-
-* How to have useful errors in logs
-
-
-* Testing challenge
-
+* Discussion
 
