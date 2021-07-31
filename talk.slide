@@ -8,6 +8,10 @@ Anastasiia Skliar
 
 Today we want to have live discussion with experts and all the attendants about approaches to implement logging
 
+
+.image images/programming-without-logs.jpeg
+
+
 * Items to discuss
 
 - Some common sence rules
@@ -28,9 +32,62 @@ Today we want to have live discussion with experts and all the attendants about 
 * Approaches
  - Global State Logging
  - Introducing Logger interface
- - Global Logger - Wrapped In a Struct, Used as an Interface
  - Passing in context.Context
  - Logger injected as a dependency
+
+
+ * Global State Logging
+ .play code/global.go
+
+
+ * Introducing Logger interface
+
+To address concerns with global logger, in all other approaches we'll be using a Logger interface:
+
+    type Logger interface {
+        Debug(args ...interface{})
+        Debugf(format string, args ...interface{})
+    }
+
+Sample implementation using built-in Go's logger:
+
+    type BuiltinLogger struct {
+        logger *log.Logger
+    }
+
+    func NewBuiltinLogger() *BuiltinLogger {
+        return &BuiltinLogger{logger: log.New(os.Stdout, "", 5)}
+    }
+
+    func (l *BuiltinLogger) Debug(args ...interface{}) {
+        l.logger.Println(args...)
+    }
+
+    func (l *BuiltinLogger) Debugf(format string, args ...interface{}) {
+        l.logger.Printf(format, args...)
+    }
+    
+Usage:
+
+    var logger Logger = NewBuiltinLogger()
+
+    func main() {
+        logger.Debugf("Hello with %s", "formatting")
+    } 
+
+* Passing in context.Context
+
+    func DoStuff(ctx context.Context) {
+        log := ctx.Value("logger").(Logger)
+        log.Debugf("Hello with %s", "formatting")
+    }
+
+    func main() {
+        ctx := context.WithValue(context.Background(), "logger", NewBuiltinLogger())
+        DoStuff(ctx)
+    }
+
+Passing loggers inside context.Context would be the worst solution to the problem of decoupling loggers from implementations. Weʼd have gone from an explicit compile time dependency to an implicit run time dependency, one that could not be enforced by the compiler.
 
 
 * Existing libraries
@@ -52,5 +109,6 @@ Today we want to have live discussion with experts and all the attendants about 
 - Threats (suspicious activities, unauthorized access, invalid parameters or input, failed authentication, failed security verification)
 - Events (search queries, product views, likes and favorites, shares, make or cancel an order, viewed a page, how much time a person spent looking at an image, and whether they scrolled to the bottom of a long page, etc.)
 
-* Discussion
+
+.image images/yes-discussion-time.jpeg
 
