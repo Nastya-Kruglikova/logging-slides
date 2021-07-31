@@ -46,7 +46,7 @@ To address concerns with global logger, in all other approaches we'll be using a
         Debugf(format string, args ...interface{})
     }
 
-*
+* 
 Sample implementation using built-in Go's logger:
 
     type BuiltinLogger struct {
@@ -136,6 +136,6 @@ Usage:
 - Threats (suspicious activities, unauthorized access, invalid parameters or input, failed authentication, failed security verification)
 - Events (search queries, product views, likes and favorites, shares, make or cancel an order, viewed a page, how much time a person spent looking at an image, and whether they scrolled to the bottom of a long page, etc.)
 
-*
+* 
 .image images/yes-discussion-time.jpeg
 
